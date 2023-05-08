@@ -12,10 +12,6 @@ An API that provides a communication interface between the front-end and your da
 
 Command Interpreter Description
 ===============================
-You won’t build this application all at once, but step by step.
-
-Each step will link to a concept:
-
 The console
 -----------
 create your data model
