@@ -3,12 +3,12 @@
 
 
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
     """Class BaseModel"""
-    def __init__(self, id, created_at, updated_at):
+    def __init__(self, id=None, created_at=None, updated_at=None):
         """object instantiation
         attributes: id
                 created-at
@@ -20,5 +20,20 @@ class BaseModel:
     def __str__(self):
         """returns string representation of class name, id, and dictionary
         ready to print"""
-        return '[' + str(self.__class__.__name__) + '] ('
-        + str(self.id) + ') ' + str(self.__dict__)
+        return '[' + str(self.__class__.__name__) + '] ('\
+            + str(self.id) + ') ' + str(self.__dict__)
+
+    def save(self):
+        """ updates the public instance attribute updated_at with the
+        current datetime"""
+        self.updated_at = datetime.now()
+
+    def to_dict(self):
+        """returns a dictionary containing all keys/values of __dict__
+        of the instance"""
+        self.__dict__["id"] = self.id
+        self.__dict__["created_at"] = (self.created_at).isoformat()
+        self.__dict__["updated_at"] = (self.updated_at).isoformat()
+        self.__dict__["__class__"] = self.__class__.__name__
+
+        return self.__dict__
