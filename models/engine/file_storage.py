@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-import json
 """
 This file contains a class FileStorage that deals with serialization
 and deserialization of instances to a JSON file.
 """
+import json
 
 
-class FileStorage():
+class FileStorage:
     """
     This class serializes instances to a JSON file and deserializes
     JSON file to instances
@@ -37,10 +37,8 @@ class FileStorage():
         deserializes the JSON file to __objects (only if the JSON file
         (__file_path) exists ; otherwise, do nothing.
         """
-
         try:
             with open(FileStorage.__file_path, "r") as file:
                 json.load(file)
-
         except FileNotFoundError:
             pass
