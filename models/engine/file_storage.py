@@ -4,6 +4,7 @@ This file contains a class FileStorage that deals with serialization
 and deserialization of instances to a JSON file.
 """
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage():

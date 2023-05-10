@@ -42,9 +42,12 @@ class BaseModel:
     def to_dict(self):
         """returns a dictionary containing all keys/values of __dict__
         of the instance"""
-        self.__dict__["id"] = self.id
-        self.__dict__["created_at"] = (self.created_at).isoformat()
-        self.__dict__["updated_at"] = (self.updated_at).isoformat()
-        self.__dict__["__class__"] = self.__class__.__name__
-
-        return self.__dict__
+        dictionary = self.__dict__.copy()
+        if 'created_at' in dictionary:
+            dictionary['created_at'] = self.created_at.isoformat()
+        if 'updated_at' in dictionary:
+            dictionary['updated_at'] = self.updated_at.isoformat()
+        dictionary['__class__'] = self.__class__.__name__
+        dictionary['id'] = self.id
+        dictionary = {key: value for key, value in dictionary.items() if not callable(value)}
+        return dictionary
