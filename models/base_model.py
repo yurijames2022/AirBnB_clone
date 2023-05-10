@@ -40,14 +40,12 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values of __dict__
-        of the instance"""
         dictionary = self.__dict__.copy()
         if 'created_at' in dictionary:
-            dictionary['created_at'] = self.created_at.isoformat()
+            if isinstance(dictionary['created_at'], datetime):
+                dictionary['created_at'] = dictionary['created_at'].isoformat()
         if 'updated_at' in dictionary:
-            dictionary['updated_at'] = self.updated_at.isoformat()
+            if isinstance(dictionary['updated_at'], datetime):
+                dictionary['updated_at'] = dictionary['updated_at'].isoformat()
         dictionary['__class__'] = self.__class__.__name__
-        dictionary['id'] = self.id
-        dictionary = {key: value for key, value in dictionary.items() if not callable(value)}
         return dictionary
