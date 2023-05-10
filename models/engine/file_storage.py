@@ -6,12 +6,11 @@ and deserialization of instances to a JSON file.
 import json
 
 
-class FileStorage:
+class FileStorage():
     """
     This class serializes instances to a JSON file and deserializes
     JSON file to instances
     """
-
     __file_path = "file.json"
     __objects = {}
 
@@ -26,10 +25,11 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path) """
+        data = {}
+        for key, value in FileStorage.__objects.items():
+            data[key] = value.to_dict()
+        
         with open(FileStorage.__file_path, "w") as file:
-            data = {}
-            for key, value in FileStorage.__objects.items():
-                data[key] = value
             json.dump(data, file)
 
     def reload(self):
@@ -39,6 +39,10 @@ class FileStorage:
         """
         try:
             with open(FileStorage.__file_path, "r") as file:
-                json.load(file)
+                obj = {}
+                data = json.load(file)
+                for key, value in data.items():
+                    obj[key] = eval(key.split('.')[0])(**value)
+                FileStorage.__objects = obj
         except FileNotFoundError:
             pass
