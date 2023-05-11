@@ -11,6 +11,8 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """Interpreter class"""
     prompt = '(hbnb) '
+    
+    classes = ["BaseModel", "User"]
 
     def do_create(self, arg):
         """Command creates new instance of BaseModel
@@ -20,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = arg.strip()
-        if class_name not in ["BaseModel"]:
+        if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
 
@@ -38,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
         arguments = arg.split()
         class_name = arguments[0]
 
-        if class_name not in ["BaseModel"]:
+        if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
         if len(arguments) < 2:
@@ -63,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
         arguments = arg.split()
         class_name = arguments[0]
 
-        if class_name not in ["BaseModel"]:
+        if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
         if len(arguments) < 2:
@@ -82,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         """ prints all string representation of all instances
         based on or not on the class name """
 
-        if arg and arg not in ["BaseModel"]:
+        if arg and arg not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
         all_objects = storage.all()
@@ -101,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in ["BaseModel"]:
+        if class_name not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
 
