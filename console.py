@@ -11,7 +11,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """Interpreter class"""
     prompt = '(hbnb) '
-    
+
     classes = ["BaseModel", "User", "Place", "State",
                "City", "Amenity", "Review"]
 
