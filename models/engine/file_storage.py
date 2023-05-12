@@ -6,6 +6,11 @@ and deserialization of instances to a JSON file.
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage():
@@ -29,7 +34,7 @@ class FileStorage():
         """ serializes __objects to the JSON file (path: __file_path) """
         data = {}
         for key, value in FileStorage.__objects.items():
-            data[key] = value.to_dict()
+            data[key] = value.to_dict
 
         with open(FileStorage.__file_path, "w") as file:
             json.dump(data, file)
@@ -41,9 +46,10 @@ class FileStorage():
         """
         try:
             with open(FileStorage.__file_path, "r") as file:
-                obj = {'BaseModel': BaseModel, 'User': User}
+                obj = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                       'State': State, 'City': City, 'Amenity': Amenity,
+                       'Review': Review}
                 data = json.load(file)
-                FileStorage.__objects = {}
 
                 for key, value in data.items():
                     obj[key] = eval(key.split('.')[0])(**value)

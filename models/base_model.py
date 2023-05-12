@@ -40,6 +40,7 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
+        """return python object"""
         dictionary = self.__dict__.copy()
         if 'created_at' in dictionary:
             if isinstance(dictionary['created_at'], datetime):
