@@ -14,10 +14,10 @@ class HBNBCommand(cmd.Cmd):
 
     classes = ["BaseModel", "User", "Place", "State",
                "City", "Amenity", "Review"]
-    
-    commands = ['create', 'show', 'destroy', 'all', 'update',
-                'count']
-    
+
+    cmnds = ['create', 'show', 'destroy', 'all', 'update',
+             'count']
+
     def precmd(self, arg):
         """command parses the command input
         before execution by any other command"""
@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
             clas = arg.split('.')
             cd = clas[1].split('(')
             args = cd[1].split(')')
-            if clas[0] in HBNBCommand.classes and cd[0] in HBNBCommand.commands:
+            if clas[0] in HBNBCommand.classes and cd[0] in HBNBCommand.cmnds:
                 arg = cd[0] + ' ' + clas[0] + ' ' + args[0]
         return arg
 

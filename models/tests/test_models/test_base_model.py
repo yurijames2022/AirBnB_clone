@@ -8,7 +8,7 @@ from datetime import datetime
 
 class BaseModel_tests(unittest.TestCase):
     """BaseModel test cases"""
-    
+
     def setUp(self):
         self.my_inst = BaseModel()
 
@@ -21,13 +21,13 @@ class BaseModel_tests(unittest.TestCase):
         self.assertIsInstance(self.my_inst.id, str)
         self.assertIsInstance(self.my_inst.created_at, datetime)
         self.assertIsInstance(self.my_inst.updated_at, datetime)
-    
+
     def test_if_has_attributes(self):
         """to test if the attributes have values"""
         self.assertIsNotNone(self.my_inst.id)
         self.assertIsNotNone(self.my_inst.created_at)
         self.assertIsNotNone(self.my_inst.updated_at)
-    
+
     def test_save(self):
         """to test if the save method works"""
         first_created_at = self.my_inst.created_at
@@ -56,6 +56,7 @@ class BaseModel_tests(unittest.TestCase):
         self.assertEqual(dict1['created_at'], self.my_inst.created_at)
         self.assertEqual(dict1['updated_at'], self.my_inst.updated_at)
         self.assertEqual(dict1['__class__'], 'BaseModel')
+
 
 if __name__ == '__main__':
     unittest.main()
