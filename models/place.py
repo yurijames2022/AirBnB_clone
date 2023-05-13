@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This is a class Place that inherits from BaseModel
 """

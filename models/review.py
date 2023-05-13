@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This is a class Review that inherits from BaseModel
 """
