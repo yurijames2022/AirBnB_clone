@@ -132,6 +132,17 @@ class HBNBCommand(cmd.Cmd):
         setattr(instance, attribute_name, value)
         instance.save()
 
+    def do_count(self, arg):
+        """command method retrieves the number of
+        instances of a class"""
+        count = 0
+        objs = storage.all()
+        for key, val in objs.items():
+            ky = key.split('.')
+            if ky[0] == arg:
+                count += 1
+        print(count)
+
     def do_quit(self, arg):
         """Quit command to exit the program
 
