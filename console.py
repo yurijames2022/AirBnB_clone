@@ -14,6 +14,20 @@ class HBNBCommand(cmd.Cmd):
 
     classes = ["BaseModel", "User", "Place", "State",
                "City", "Amenity", "Review"]
+    
+    commands = ['create', 'show', 'destroy', 'all', 'update',
+                'count']
+    
+    def precmd(self, arg):
+        """command parses the command input
+        before execution by any other command"""
+        if '.' in arg and '(' in arg and ')' in arg:
+            clas = arg.split('.')
+            cd = clas[1].split('(')
+            args = cd[1].split(')')
+            if clas[0] in HBNBCommand.classes and cd[0] in HBNBCommand.commands:
+                arg = cd[0] + ' ' + clas[0] + ' ' + args[0]
+        return arg
 
     def do_create(self, arg):
         """Command creates new instance of BaseModel
