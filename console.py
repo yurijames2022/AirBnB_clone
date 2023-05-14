@@ -165,6 +165,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         """Method to check EOF"""
+        print()
         return True
 
     def emptyline(self):
