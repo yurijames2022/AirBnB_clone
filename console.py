@@ -91,7 +91,9 @@ class HBNBCommand(cmd.Cmd):
         py_objects = models.storage.all()
 
         if key in py_objects:
+            val = py_objects[key]
             del py_objects[key]
+            del val
         else:
             print("** no instance found **")
 
