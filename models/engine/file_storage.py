@@ -34,14 +34,12 @@ class FileStorage():
         """ serializes __objects to the JSON file (path: __file_path) """
         data = {}
         val = None
-        val_assigned = False
         for key, val in FileStorage.__objects.items():
             if hasattr(val.__class__, "to_dict"):
                 data[key] = val.__class__.to_dict(val)
-                val_assigned = True
-        else:
-            if val is not None and val_assigned:
-                data[key] = val.to_dict()
+                break
+        if val:
+            data[key] = val.to_dict()
 
         with open(FileStorage.__file_path, "w") as file:
             json.dump(data, file)
