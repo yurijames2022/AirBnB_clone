@@ -90,10 +90,15 @@ class HBNBCommand(cmd.Cmd):
         key = "{}.{}".format(class_name, inst_id)
         py_objects = models.storage.all()
 
-        if key in py_objects:
-            val = py_objects[key]
+        found_inst = False
+        for obj_key in py_objects:
+            if obj_key.split('.')[1] == inst_id:
+                found_inst = True
+                break
+
+        if found_inst:
             del py_objects[key]
-            del val
+            models.storage.save()
         else:
             print("** no instance found **")
 
